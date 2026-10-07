@@ -309,9 +309,13 @@
     }
     .spot-curation strong { color: var(--primary); }
 
-    /* Cover Page (성산일출봉 & 제주 푸른 바다 절경) */
+    /* Cover Page (성산일출봉 — Photo: Jake Mullins / Unsplash, 대체 이미지: Jaemin Yu / Unsplash) */
     .cover-page {
-      background: linear-gradient(rgba(15, 35, 25, 0.55), rgba(10, 20, 15, 0.88)), url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=1000&q=80') center/cover;
+      background:
+        linear-gradient(rgba(15, 35, 25, 0.55), rgba(10, 20, 15, 0.88)),
+        url('https://images.unsplash.com/photo-1785686856914-828bceeb9e64?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat,
+        url('https://images.unsplash.com/photo-1622209018972-097984086b0b?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat,
+        #193627;
       color: #fff;
       display: flex;
       flex-direction: column;
