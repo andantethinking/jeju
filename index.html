@@ -1066,6 +1066,7 @@
 
     updateNav();
     closeMenus();
+    savePage();
 
     const dots = document.querySelectorAll('.dot');
     dots.forEach((dot, idx) => {
@@ -1144,6 +1145,35 @@
 
     isPulling = false;
   }, { passive: true });
+  /* ===== 새로고침해도 보던 페이지 유지 ===== */
+  function savePage() {
+    const hash = '#p' + (currentPage + 1);
+    try {
+      history.replaceState(null, '', hash);
+    } catch (e) {
+      if (location.hash !== hash) location.hash = hash;
+    }
+    try { sessionStorage.setItem('jejuMagPage', String(currentPage)); } catch (e) {}
+  }
+
+  function restorePage() {
+    let saved = null;
+    const m = location.hash.match(/^#p(\d+)$/);
+    if (m) saved = Number(m[1]) - 1;
+    if (saved === null) {
+      try {
+        const s = sessionStorage.getItem('jejuMagPage');
+        if (s !== null) saved = Number(s);
+      } catch (e) {}
+    }
+    if (saved === null || !(saved >= 0 && saved < totalPages)) return;
+    slider.style.transition = 'none';   // 새로고침 직후에는 슬라이드 애니메이션 없이 바로 표시
+    currentPage = saved;
+    updateView();
+    void slider.offsetWidth;
+    slider.style.transition = '';
+  }
+  restorePage();
 </script>
 
 </body>
