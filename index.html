@@ -6,25 +6,25 @@
   <title>JEJU FAMILY TRAVEL MAGAZINE</title>
   <style>
     :root {
-      --primary: #1e3a2b;       /* 짙은 제주 숲 그린 */
-      --accent: #d97706;        /* 따뜻한 감귤 앰버 */
-      --bg: #f7f6f2;            /* 따뜻한 매거진 미색지 */
+      --primary: #193627;
+      --accent: #d97706;
+      --bg: #f5f4ef;
       --surface: #ffffff;
-      --text: #222222;
+      --text: #1f2937;
       --text-muted: #6b7280;
-      --border: #e8e6df;
+      --border: #e5e3db;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Noto Serif KR", serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Apple SD Gothic Neo", "Noto Serif KR", serif;
       -webkit-tap-highlight-color: transparent;
     }
 
     body {
-      background-color: #2b2b2b;
+      background-color: #1a1a1a;
       color: var(--text);
       overflow: hidden;
       height: 100vh;
@@ -33,7 +33,6 @@
       align-items: center;
     }
 
-    /* Magazine App Wrapper */
     .magazine-app {
       width: 100%;
       max-width: 480px;
@@ -42,33 +41,62 @@
       position: relative;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
     }
 
-    /* Top Magazine Bar */
+    /* Top Nav: 빠른 바로가기 칩 */
     .mag-topbar {
-      height: 48px;
-      padding: 0 20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+    }
+    .top-header {
+      height: 40px;
+      padding: 0 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-      background: rgba(247, 246, 242, 0.95);
-      backdrop-filter: blur(10px);
-      z-index: 50;
     }
     .mag-vol {
       font-size: 11px;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: 2px;
       color: var(--primary);
-      text-transform: uppercase;
     }
     .mag-page-indicator {
       font-size: 12px;
       font-weight: 600;
       color: var(--text-muted);
-      letter-spacing: 1px;
+    }
+
+    /* Quick Jump Navigation Bar */
+    .quick-nav {
+      display: flex;
+      overflow-x: auto;
+      padding: 6px 12px 10px;
+      gap: 6px;
+      scrollbar-width: none;
+    }
+    .quick-nav::-webkit-scrollbar { display: none; }
+    .nav-chip {
+      white-space: nowrap;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-chip.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
     }
 
     /* Page Viewport */
@@ -90,211 +118,222 @@
       height: 100%;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding: 24px 20px 80px;
+      padding: 16px 16px 80px;
       display: flex;
       flex-direction: column;
+      gap: 16px;
     }
-
-    /* Scrollbar Custom */
     .page::-webkit-scrollbar { width: 4px; }
     .page::-webkit-scrollbar-thumb { background: #d1cfc7; border-radius: 4px; }
 
+    /* Page Header */
+    .page-title-box {
+      border-left: 4px solid var(--primary);
+      padding-left: 10px;
+      margin-bottom: 4px;
+    }
+    .page-day-tag {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .page-headline {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    /* Photo & Feature Card (한 페이지 2개씩) */
+    .spot-card {
+      background: var(--surface);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+    }
+    .spot-image-box {
+      width: 100%;
+      height: 165px;
+      position: relative;
+      overflow: hidden;
+      background: #e2e8f0;
+    }
+    .spot-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s;
+    }
+    .badge-float {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(25, 54, 39, 0.85);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 6px;
+    }
+    .badge-float.food { background: rgba(217, 119, 6, 0.9); }
+    .badge-float.hotel { background: rgba(88, 28, 135, 0.85); }
+
+    .spot-body {
+      padding: 14px 16px;
+    }
+    .spot-time {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 3px;
+    }
+    .spot-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 6px;
+    }
+    .spot-desc {
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #4b5563;
+      margin-bottom: 10px;
+    }
+    .spot-curation {
+      background: #faf9f5;
+      border-left: 3px solid var(--accent);
+      padding: 8px 10px;
+      border-radius: 0 6px 6px 0;
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: #374151;
+    }
+    .spot-curation strong { color: var(--primary); }
+
+    /* Cover Page */
+    .cover-page {
+      background: linear-gradient(rgba(25, 54, 39, 0.7), rgba(15, 30, 22, 0.9)), url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=800&q=80') center/cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 24px;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+    .cover-title {
+      font-size: 38px;
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin: 16px 0 10px;
+    }
+    .cover-sub {
+      font-size: 15px;
+      font-weight: 300;
+      opacity: 0.95;
+      line-height: 1.5;
+    }
+    .cover-meta {
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 20px;
+      font-size: 12.5px;
+      line-height: 1.7;
+    }
+
+    /* Checklist Section */
+    .check-card {
+      background: var(--surface);
+      border-radius: 14px;
+      padding: 16px;
+      border: 1px solid var(--border);
+    }
+    .check-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 12.5px;
+    }
+    .check-row:last-child { border-bottom: none; }
+    .check-row input { width: 17px; height: 17px; accent-color: var(--primary); }
+
     /* Bottom Control Bar */
     .mag-bottombar {
-      height: 60px;
+      height: 58px;
       background: var(--surface);
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 20px;
+      padding: 0 16px;
       z-index: 50;
     }
     .nav-btn {
       background: none;
       border: 1px solid var(--border);
-      padding: 8px 16px;
+      padding: 7px 16px;
       border-radius: 20px;
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--text);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.2s;
     }
     .nav-btn:active { background: var(--border); }
-    .nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+    .nav-btn:disabled { opacity: 0.3; }
 
-    .toc-quick {
-      display: flex;
-      gap: 6px;
-    }
+    .toc-quick { display: flex; gap: 5px; }
     .dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: #d1cfc7;
       cursor: pointer;
       transition: all 0.3s;
     }
     .dot.active {
-      width: 20px;
+      width: 18px;
       border-radius: 10px;
       background: var(--primary);
     }
-
-    /* --- PAGE 1: COVER --- */
-    .cover-page {
-      background: linear-gradient(rgba(30, 58, 43, 0.75), rgba(20, 36, 27, 0.9)), url('https://images.unsplash.com/photo-1548115184-bc6544d06a58?auto=format&fit=crop&w=800&q=80') center/cover;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      border-radius: 4px;
-      padding: 32px 24px;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-    }
-    .cover-top { border-top: 2px solid rgba(255,255,255,0.7); padding-top: 12px; }
-    .cover-issue { font-size: 11px; letter-spacing: 3px; font-weight: 600; opacity: 0.9; }
-    .cover-title {
-      font-size: 40px;
-      font-weight: 900;
-      line-height: 1.15;
-      letter-spacing: -1.5px;
-      margin: 20px 0 10px;
-    }
-    .cover-sub {
-      font-size: 16px;
-      font-weight: 300;
-      line-height: 1.5;
-      opacity: 0.95;
-    }
-    .cover-meta {
-      background: rgba(255,255,255,0.15);
-      backdrop-filter: blur(8px);
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 24px;
-    }
-    .cover-meta div { font-size: 13px; margin-bottom: 4px; }
-    .cover-meta div:last-child { margin-bottom: 0; }
-    .swipe-hint {
-      text-align: center;
-      font-size: 12px;
-      letter-spacing: 2px;
-      animation: pulse 1.5s infinite;
-      opacity: 0.8;
-      margin-top: 16px;
-    }
-    @keyframes pulse { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
-
-    /* --- EDITORIAL STYLES --- */
-    .mag-header {
-      margin-bottom: 24px;
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 12px;
-    }
-    .mag-section-tag {
-      font-size: 11px;
-      letter-spacing: 2px;
-      color: var(--accent);
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .mag-headline {
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--primary);
-      line-height: 1.25;
-      letter-spacing: -0.5px;
-    }
-    .mag-subline {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 4px;
-    }
-
-    /* Magazine Cards */
-    .feature-card {
-      background: var(--surface);
-      border-radius: 14px;
-      padding: 18px;
-      margin-bottom: 18px;
-      border: 1px solid var(--border);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-    }
-    .time-badge {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 700;
-      color: #fff;
-      background: var(--primary);
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-bottom: 8px;
-    }
-    .time-badge.food { background: var(--accent); }
-    .card-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 6px;
-      color: #111;
-    }
-    .card-summary {
-      font-size: 13px;
-      line-height: 1.6;
-      color: #4b5563;
-      margin-bottom: 12px;
-    }
-    .editorial-quote {
-      border-left: 3px solid var(--accent);
-      background: #faf9f5;
-      padding: 10px 12px;
-      border-radius: 0 8px 8px 0;
-      font-size: 12px;
-      line-height: 1.5;
-      color: #374151;
-    }
-    .editorial-quote strong { color: var(--primary); }
-
-    /* Checklist & Tip Box */
-    .checklist-group {
-      background: #fff;
-      border-radius: 12px;
-      padding: 16px;
-      margin-bottom: 16px;
-      border: 1px solid var(--border);
-    }
-    .check-label {
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 12px;
-      display: block;
-    }
-    .check-row {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 0;
-      border-bottom: 1px dashed var(--border);
-      font-size: 13px;
-    }
-    .check-row:last-child { border-bottom: none; }
-    .check-row input { width: 18px; height: 18px; accent-color: var(--primary); }
   </style>
 </head>
 <body>
 
 <div class="magazine-app">
 
-  <!-- Top Bar -->
+  <!-- Top Bar & Quick Navigation -->
   <header class="mag-topbar">
-    <div class="mag-vol">SPECIAL EDITION</div>
-    <div class="mag-page-indicator" id="pageIndicator">01 / 05</div>
+    <div class="top-header">
+      <div class="mag-vol">JEJU FAMILY MAGAZINE</div>
+      <div class="mag-page-indicator" id="pageIndicator">01 / 08</div>
+    </div>
+    <nav class="quick-nav" id="quickNav">
+      <button class="nav-chip active" onclick="goToPage(0)">표지</button>
+      <button class="nav-chip" onclick="goToPage(1)">1일차 점심·오설록</button>
+      <button class="nav-chip" onclick="goToPage(2)">1일차 카멜리아·통갈치</button>
+      <button class="nav-chip" onclick="goToPage(3)">2일차 섭지코지·성게</button>
+      <button class="nav-chip" onclick="goToPage(4)">2일차 비자림·함덕</button>
+      <button class="nav-chip" onclick="goToPage(5)">2일차 흑돼지 파티</button>
+      <button class="nav-chip" onclick="goToPage(6)">3일차 무지개·국수</button>
+      <button class="nav-chip" onclick="goToPage(7)">가이드북·체크</button>
+    </nav>
   </header>
 
   <!-- Pages Slider -->
@@ -303,232 +342,339 @@
 
       <!-- PAGE 1: COVER -->
       <section class="page cover-page">
-        <div class="cover-top">
-          <div class="cover-issue">OCTOBER 2026 • FAMILY ESSENTIAL</div>
+        <div style="border-top: 2px solid rgba(255,255,255,0.7); padding-top: 10px;">
+          <div style="font-size: 11px; letter-spacing: 3px; font-weight: 700;">VOL. 01 • OCTOBER 2026</div>
         </div>
         <div>
-          <h1 class="cover-title">제주,<br>가장 빛나는<br>가족의 순간</h1>
-          <p class="cover-sub">아버지의 일흔 번째 생신과 새로운 시작을 앞둔 동생 부부를 위한 2박 3일 힐링 로드</p>
+          <h1 class="cover-title">제주,<br>우리 가족의<br>눈부신 순간</h1>
+          <p class="cover-sub">아버지 칠순 기념 & 예비부부 결혼 축하 힐링 여행<br>동선을 최적화한 반시계 루프 매거진</p>
           <div class="cover-meta">
-            <div>🗓 <strong>일정:</strong> 2026. 10. 8(목) ~ 10. 10(토)</div>
-            <div>🚗 <strong>동선:</strong> 제주 완주 반시계 루프 (서남부 ➔ 동부 ➔ 북부)</div>
+            <div>🗓 <strong>일시:</strong> 2026. 10. 8 (목) ~ 10. 10 (토)</div>
+            <div>🚗 <strong>동선:</strong> 서남부 정원 ➔ 동부 해안·숲 ➔ 북부 공항</div>
             <div>🏨 <strong>숙소:</strong> 호텔골든데이지 서귀포 / 신라스테이 제주</div>
           </div>
         </div>
-        <div class="swipe-hint">◀ SLIDE TO FLIP PAGE ▶</div>
+        <div style="text-align: center; font-size: 12px; letter-spacing: 2px; opacity: 0.8; animation: pulse 1.5s infinite;">
+          ◀ 좌우로 넘겨보세요 ▶
+        </div>
       </section>
 
-      <!-- PAGE 2: DAY 1 -->
+      <!-- PAGE 2: DAY 1 - PART 1 -->
       <section class="page">
-        <div class="mag-header">
-          <div class="mag-section-tag">DAY 01 • OCTOBER 8</div>
-          <h2 class="mag-headline">초록빛 정원과<br>통갈치 축하 만찬</h2>
-          <p class="mag-subline">공항 도착 후 서남부 평화로를 타고 내려가는 여유로운 힐링 여정</p>
+        <div class="page-title-box">
+          <div class="page-day-tag">DAY 01 • PART 1</div>
+          <h2 class="page-headline">제주 입도 & 녹차밭 산책</h2>
         </div>
 
-        <article class="feature-card">
-          <span class="time-badge">10:35 ~ 11:30</span>
-          <h3 class="card-title">제주공항 도착 & 렌트카 인수</h3>
-          <p class="card-summary">제주에 첫발을 딛는 시간. 5번 게이트 앞 셔틀버스를 타고 렌트카 하우스로 이동해 승합/SUV를 수령하고 평화로를 타고 서남부로 달립니다.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge food">12:30 ~ 13:40</span>
-          <h3 class="card-title">가람돌솥밥 • 첫 끼의 온기</h3>
-          <p class="card-summary">부모님의 속을 편안하게 채워주는 따뜻한 전복돌솥밥과 성게돌솥밥, 그리고 고소한 옥돔구이 정식입니다.</p>
-          <div class="editorial-quote">
-            <strong>EDITOR'S NOTE:</strong> 마가린과 양념간장을 곁들여 비벼 먹는 고소한 뚝배기 밥과 정갈한 밑반찬이 어르신 첫 식사로 제격입니다.
+        <!-- SPOT 1: 가람돌솥밥 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="전복돌솥밥 한상">
+            <span class="badge-float food">점심 식사 (12:30)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">12:30 ~ 13:40 | 중문/안덕</div>
+            <h3 class="spot-name">가람돌솥밥</h3>
+            <p class="spot-desc">어르신들의 속을 따뜻하게 달래주는 고소한 전복돌솥밥, 성게돌솥밥과 담백한 옥돔구이 정식입니다.</p>
+            <div class="spot-curation">
+              <strong>EDITOR'S TIP:</strong> 마가린과 간장양념을 살짝 비벼 고소함을 극대화하고, 자극적이지 않은 밑반찬으로 부모님 만족도가 높습니다.
+            </div>
           </div>
         </article>
 
-        <article class="feature-card">
-          <span class="time-badge">14:00 ~ 15:10</span>
-          <h3 class="card-title">오설록 티 뮤지엄</h3>
-          <p class="card-summary">끝없이 펼쳐진 초록빛 유기농 차밭. 경사가 완만한 평지길로 정비되어 부모님이 거닐기에 부담이 전혀 없습니다.</p>
-          <div class="editorial-quote">
-            <strong>PHOTO SPOT:</strong> 녹차밭 사잇길에서 온 가족 단체 사진 촬영 후, 실내에서 시원한 녹차 아이스크림을 즐겨보세요.
+        <!-- SPOT 2: 오설록 티 뮤지엄 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="초록빛 녹차밭">
+            <span class="badge-float">산책 / 카페 (14:00)</span>
           </div>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge">15:30 ~ 16:40</span>
-          <h3 class="card-title">카멜리아 힐 • 가을 숲길</h3>
-          <p class="card-summary">오설록에서 차로 10분 거리. 10월 초가을 억새와 핑크뮬리, 온실 정원이 아름답게 펼쳐집니다.</p>
-          <div class="editorial-quote">
-            <strong>COUPLE SNAP:</strong> 감성 가득한 문구가 걸린 오솔길은 결혼을 앞둔 동생 부부의 야외 커플 스냅 촬영 명소입니다.
-          </div>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge food">18:15 ~ 19:45</span>
-          <h3 class="card-title">색달식당 • 칠순 기념 통갈치 만찬</h3>
-          <p class="card-summary">호텔골든데이지 체크인 후 방문하는 대망의 첫날 저녁 식사. 테이블 전체를 가득 채우는 웅장한 통갈치구이와 조림 세트입니다.</p>
-          <div class="editorial-quote">
-            <strong>FAMILY TIP:</strong> 직원이 직접 큰 가시를 모두 발라주어 어르신들이 대접받는 기분으로 편안하게 즐기실 수 있습니다.
+          <div class="spot-body">
+            <div class="spot-time">14:00 ~ 15:10 | 안덕면</div>
+            <h3 class="spot-name">오설록 티 뮤지엄</h3>
+            <p class="spot-desc">끝없이 펼쳐진 초록빛 녹차밭과 현대적인 실내 복합 전시관. 평탄한 산책로가 조성되어 걷기 매우 편안합니다.</p>
+            <div class="spot-curation">
+              <strong>PHOTO SPOT:</strong> 녹차밭 사잇길에서 온 가족 단체 사진을 남긴 뒤, 실내에서 시원한 녹차 아이스크림을 즐기세요.
+            </div>
           </div>
         </article>
       </section>
 
-      <!-- PAGE 3: DAY 2 -->
+      <!-- PAGE 3: DAY 1 - PART 2 -->
       <section class="page">
-        <div class="mag-header">
-          <div class="mag-section-tag">DAY 02 • OCTOBER 9</div>
-          <h2 class="mag-headline">동부 에메랄드 바다와<br>천년의 비자나무 숲</h2>
-          <p class="mag-subline">성산 푸른 해안선부터 제주시 흑돼지 축하연까지 이어지는 하루</p>
+        <div class="page-title-box">
+          <div class="page-day-tag">DAY 01 • PART 2</div>
+          <h2 class="page-headline">가을 정원 & 통갈치 만찬</h2>
         </div>
 
-        <article class="feature-card">
-          <span class="time-badge">10:30 ~ 11:50</span>
-          <h3 class="card-title">섭지코지 • 붉은오름 해안로</h3>
-          <p class="card-summary">가파른 성산일출봉 정상 계단 대신, 바다를 곁에 두고 걷는 완만한 해안 산책로를 선택했습니다.</p>
-          <div class="editorial-quote">
-            <strong>PHOTO SPOT:</strong> 하얀 등대와 푸른 바다, 성산일출봉을 배경으로 온 가족이 함께 남기는 평생의 명장면입니다.
+        <!-- SPOT 3: 카멜리아 힐 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="가을 수목원 정원">
+            <span class="badge-float">힐링 수목원 (15:30)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">15:30 ~ 16:40 | 안덕면</div>
+            <h3 class="spot-name">카멜리아 힐</h3>
+            <p class="spot-desc">오설록에서 차로 10분 거리. 10월 억새와 핑크뮬리, 온실 정원이 펼쳐지는 완만한 평지 숲길입니다.</p>
+            <div class="spot-curation">
+              <strong>COUPLE SNAP:</strong> 사랑스러운 글귀가 적힌 숲길은 예비부부 커플 스냅과 가족 기념사진 명소입니다.
+            </div>
           </div>
         </article>
 
-        <article class="feature-card">
-          <span class="time-badge food">12:10 ~ 13:20</span>
-          <h3 class="card-title">바다의 집 • 성산 성게미역국</h3>
-          <p class="card-summary">신선한 성게알이 듬뿍 들어가 깊고 맑은 국물을 자랑하는 성게미역국과 성게비빔밥 전문점입니다.</p>
-          <div class="editorial-quote">
-            <strong>EDITOR'S NOTE:</strong> 조미료 맛 없이 담백하고 시원하여 부모님 세대의 만족도가 가장 높은 동부의 보석 같은 식당입니다.
+        <!-- SPOT 4: 색달식당 통갈치 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1534422298391-e4f8c172dddb?auto=format&fit=crop&w=600&q=80" alt="제주 갈치 요리">
+            <span class="badge-float food">칠순 기념 만찬 (18:15)</span>
           </div>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge">13:50 ~ 15:10</span>
-          <h3 class="card-title">비자림 • 피톤치드 숲 샤워</h3>
-          <p class="card-summary">수령 500~800년 비자나무 수천 그루가 만든 그늘 숲길. 붉은 화산송이 흙이 부드럽게 깔려 있어 관절 무리 없이 걷기 좋습니다.</p>
-          <div class="editorial-quote">
-            <strong>HEALING:</strong> 숲 한가운데 벤치에 앉아 깊게 들이마시는 피톤치드 향기는 부모님 건강 선물로 으뜸입니다.
-          </div>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge">15:40 ~ 17:00</span>
-          <h3 class="card-title">함덕해수욕장 & 카페 델문도</h3>
-          <p class="card-summary">제주에서 가장 이국적인 에메랄드빛 해변. 바다 바로 위에 자리한 오션뷰 테라스에서 커피와 베이커리를 즐깁니다.</p>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge food">18:45 ~ 20:30</span>
-          <h3 class="card-title">신라스테이 체크인 & 흑돼지 파티</h3>
-          <p class="card-summary">호텔 도보 거리의 프리미엄 흑돼지 전문점(돌담흑돼지/숙성도)에서 열리는 가족 축하 만찬입니다.</p>
-          <div class="editorial-quote">
-            <strong>HIGHLIGHT:</strong> 직원이 구워주는 고기와 함께 칠순 축하 케이크 촛불식과 예비부부 결혼 축하 건배를 나눕니다.
+          <div class="spot-body">
+            <div class="spot-time">18:15 ~ 19:45 | 서귀포</div>
+            <h3 class="spot-name">색달식당 (통갈치구이 & 조림)</h3>
+            <p class="spot-desc">골든데이지 호텔 체크인 후 방문하는 대망의 칠순 축하연. 테이블 전체를 채우는 웅장한 통갈치 한상입니다.</p>
+            <div class="spot-curation">
+              <strong>HIGHLIGHT:</strong> 직원이 큰 가시를 모두 정갈하게 발라주어 어르신들이 대접받는 기분으로 편안하게 즐기실 수 있습니다.
+            </div>
           </div>
         </article>
       </section>
 
-      <!-- PAGE 4: DAY 3 -->
+      <!-- PAGE 4: DAY 2 - PART 1 -->
       <section class="page">
-        <div class="mag-header">
-          <div class="mag-section-tag">DAY 03 • OCTOBER 10</div>
-          <h2 class="mag-headline">무지개 해안도로와<br>든든한 귀경길</h2>
-          <p class="mag-subline">바다를 마주한 마지막 스냅 사진과 진한 고기국수로 완성하는 여정</p>
+        <div class="page-title-box">
+          <div class="page-day-tag">DAY 02 • PART 1</div>
+          <h2 class="page-headline">푸른 해안로 & 성게 한상</h2>
         </div>
 
-        <article class="feature-card">
-          <span class="time-badge">10:30 ~ 11:20</span>
-          <h3 class="card-title">도두동 무지개 해안도로 & 용두암</h3>
-          <p class="card-summary">알록달록한 무지개 방호벽 위에 가족이 나란히 앉아 경쾌한 포즈로 여행의 마지막 단체 사진을 남깁니다. 차로 5분 거리인 용두암의 웅장한 바위 절경도 가볍게 조망합니다.</p>
-          <div class="editorial-quote">
-            <strong>PHOTO SPOT:</strong> 푸른 제주 바다와 무지개 컬러가 대비되어 화사하고 생기 넘치는 가족 앨범 메인 컷이 완성됩니다.
+        <!-- SPOT 5: 섭지코지 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="제주 푸른 바다 절경">
+            <span class="badge-float">해안 산책 (10:30)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">10:30 ~ 11:50 | 성산읍</div>
+            <h3 class="spot-name">섭지코지</h3>
+            <p class="spot-desc">성산일출봉 가파른 계단 대신 선택한 부드러운 해안길. 붉은 화산 언덕과 하얀 등대, 푸른 바다가 어우러집니다.</p>
+            <div class="spot-curation">
+              <strong>WALKING TIP:</strong> 등대 계단은 무리하지 마시고, 완만한 해안 산책로를 걸으며 성산일출봉을 배경으로 가족사진을 담으세요.
+            </div>
           </div>
         </article>
 
-        <article class="feature-card">
-          <span class="time-badge food">11:30 ~ 12:35</span>
-          <h3 class="card-title">자매국수 본점 • 제주의 마지막 맛</h3>
-          <p class="card-summary">오랜 시간 푹 고아낸 뽀얀 돈사골 육수의 고기국수와 쫄깃한 돔베고기 한 접시로 비행기 탑승 전 든든하게 배를 채웁니다.</p>
-          <div class="editorial-quote">
-            <strong>SMART TIP:</strong> 도두항 인근 대형 단독 건물로 엘리베이터 완비. 이동 중 '캐치테이블' 원격 대기를 걸면 기다림 없이 입장 가능합니다.
+        <!-- SPOT 6: 바다의 집 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80" alt="바다 전망 정갈한 한식">
+            <span class="badge-float food">점심 식사 (12:10)</span>
           </div>
-        </article>
-
-        <article class="feature-card">
-          <span class="time-badge">12:45 ~ 14:00</span>
-          <h3 class="card-title">렌트카 반납 & 제주공항 이륙</h3>
-          <p class="card-summary">식당에서 10분 거리의 렌트카 영업소에 차량을 반납하고 셔틀로 공항 3층에 도착합니다. 탑승 수속과 면세점을 여유롭게 둘러본 뒤 오후 2시 비행기로 서울로 향합니다.</p>
+          <div class="spot-body">
+            <div class="spot-time">12:10 ~ 13:20 | 성산 오조리</div>
+            <h3 class="spot-name">바다의 집 (성게미역국)</h3>
+            <p class="spot-desc">신선한 성게알이 듬뿍 들어가 맑고 깊은 감칠맛을 자랑하는 성게미역국과 성게비빔밥 전문점입니다.</p>
+            <div class="spot-curation">
+              <strong>EDITOR'S NOTE:</strong> 비린 맛 없이 담백하고 시원해 부모님 세대의 선호도가 가장 높은 동부의 대표 맛집입니다.
+            </div>
+          </div>
         </article>
       </section>
 
-      <!-- PAGE 5: ESSENTIAL GUIDE -->
+      <!-- PAGE 5: DAY 2 - PART 2 -->
       <section class="page">
-        <div class="mag-header">
-          <div class="mag-section-tag">SPECIAL CHECKLIST</div>
-          <h2 class="mag-headline">가족 여행을 위한<br>에디터 가이드북</h2>
-          <p class="mag-subline">출발 전 반드시 확인해야 할 예약 및 준비 사항</p>
+        <div class="page-title-box">
+          <div class="page-day-tag">DAY 02 • PART 2</div>
+          <h2 class="page-headline">천년 숲길 & 에메랄드 해변</h2>
         </div>
 
-        <div class="checklist-group">
-          <span class="check-label">📌 사전 예약 체크리스트</span>
+        <!-- SPOT 7: 비자림 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80" alt="울창한 피톤치드 숲길">
+            <span class="badge-float">원시림 힐링 (13:50)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">13:50 ~ 15:10 | 구좌읍</div>
+            <h3 class="spot-name">비자림</h3>
+            <p class="spot-desc">500~800년 된 비자나무 수천 그루가 만든 시원한 녹음. 붉은 화산송이 흙길이 부드러워 관절 부담이 없습니다.</p>
+            <div class="spot-curation">
+              <strong>HEALING:</strong> 숲속 쉼터 벤치에서 깊게 들이마시는 피톤치드 향기는 부모님 건강을 위한 최고의 휴식입니다.
+            </div>
+          </div>
+        </article>
+
+        <!-- SPOT 8: 함덕해수욕장 & 델문도 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="에메랄드빛 해변">
+            <span class="badge-float">오션뷰 카페 (15:40)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">15:40 ~ 17:00 | 조천읍</div>
+            <h3 class="spot-name">함덕해수욕장 & 카페 델문도</h3>
+            <p class="spot-desc">에메랄드빛 바다 바로 위에 지어진 베이커리 카페 테라스에서 커피와 빵을 즐기며 여유로운 담소를 나눕니다.</p>
+            <div class="spot-curation">
+              <strong>VIEW POINT:</strong> 테라스 난간 너머로 펼쳐지는 그림 같은 바다 파노라마 뷰를 배경으로 가족 컷을 남겨보세요.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PAGE 6: DAY 2 - PART 3 (체크인 & 만찬) -->
+      <section class="page">
+        <div class="page-title-box">
+          <div class="page-day-tag">DAY 02 • PART 3</div>
+          <h2 class="page-headline">제주시 입성 & 흑돼지 파티</h2>
+        </div>
+
+        <!-- SPOT 9: 신라스테이 제주 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="모던한 호텔 객실">
+            <span class="badge-float hotel">호텔 체크인 (17:40)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">17:40 ~ 18:30 | 제주시 연동</div>
+            <h3 class="spot-name">신라스테이 제주</h3>
+            <p class="spot-desc">제주시 연동 번화가 중심에 위치한 깔끔한 숙소. 체크인 후 짐을 풀고 가벼운 복장으로 저녁 식사로 향합니다.</p>
+            <div class="spot-curation">
+              <strong>LOCATION:</strong> 호텔 바로 주변에 프리미엄 흑돼지 명가와 베이커리들이 밀집해 있어 도보 이동이 수월합니다.
+            </div>
+          </div>
+        </article>
+
+        <!-- SPOT 10: 흑돼지 축하 만찬 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="지글지글 흑돼지 구이">
+            <span class="badge-float food">가족 축하 파티 (18:45)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">18:45 ~ 20:30 | 제주시 연동/노형</div>
+            <h3 class="spot-name">돌담흑돼지 연동점 (또는 숙성도)</h3>
+            <p class="spot-desc">육즙 가득한 프리미엄 숙성 흑돼지 근고기. 전문 직원이 직접 구워주어 가족 모두가 편안하게 대화에 집중할 수 있습니다.</p>
+            <div class="spot-curation">
+              <strong>CELEBRATION:</strong> 준비한 칠순 축하 케이크 촛불식과 동생 내외의 결혼을 축하하는 뜻깊은 건배를 나누세요!
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PAGE 7: DAY 3 -->
+      <section class="page">
+        <div class="page-title-box">
+          <div class="page-day-tag">DAY 03 • FINAL</div>
+          <h2 class="page-headline">무지개 도로 & 든든한 귀경</h2>
+        </div>
+
+        <!-- SPOT 11: 도두동 무지개 해안도로 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="알록달록 해안도로">
+            <span class="badge-float">포토존 (10:30)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">10:30 ~ 11:20 | 도두동</div>
+            <h3 class="spot-name">도두동 무지개 해안도로 & 용두암</h3>
+            <p class="spot-desc">바다를 따라 알록달록 무지개 방호벽이 이어지는 명소. 방호벽 위에 나란히 앉아 경쾌한 마지막 단체 사진을 남깁니다.</p>
+            <div class="spot-curation">
+              <strong>PHOTO SPOT:</strong> 밝고 활기찬 가족 스냅 명소. 차로 5분 거리인 용두암의 웅장한 기암 절경도 함께 조망합니다.
+            </div>
+          </div>
+        </article>
+
+        <!-- SPOT 12: 자매국수 -->
+        <article class="spot-card">
+          <div class="spot-image-box">
+            <img class="spot-image" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="따뜻한 고기국수">
+            <span class="badge-float food">점심 식사 (11:30)</span>
+          </div>
+          <div class="spot-body">
+            <div class="spot-time">11:30 ~ 12:35 | 도두항 본점</div>
+            <h3 class="spot-name">자매국수 (고기국수 & 돔베고기)</h3>
+            <p class="spot-desc">푹 고아낸 담백한 사골 육수의 고기국수와 쫄깃한 돔베고기. 식사 후 렌트카 반납(12:45) 후 14:00 비행기에 탑승합니다.</p>
+            <div class="spot-curation">
+              <strong>SMART TIP:</strong> 이동 중 '캐치테이블' 원격 줄서기를 이용하면 대기 없이 바로 입장 가능하며 엘리베이터가 완비되어 있습니다.
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- PAGE 8: CHECKLIST & GUIDE -->
+      <section class="page">
+        <div class="page-title-box">
+          <div class="page-day-tag">TRAVEL GUIDE</div>
+          <h2 class="page-headline">가족 여행 에센셜 체크</h2>
+        </div>
+
+        <div class="check-card">
+          <div class="check-title">📋 사전 예약 & 준비 리스트</div>
           <div class="check-row">
-            <input type="checkbox" id="chk1"><label for="chk1">1일차 저녁: 색달식당(통갈치구이) 단체석 예약</label>
+            <input type="checkbox" id="ck1"><label for="ck1">1일차 저녁: 색달식당(통갈치구이) 단체석 예약</label>
           </div>
           <div class="check-row">
-            <input type="checkbox" id="chk2"><label for="chk2">2일차 저녁: 신라스테이 인근 흑돼지 식당 테이블 확보</label>
+            <input type="checkbox" id="ck2"><label for="ck2">2일차 저녁: 신라스테이 인근 흑돼지 식당 테이블 확보</label>
           </div>
           <div class="check-row">
-            <input type="checkbox" id="chk3"><label for="chk3">칠순 기념 레터링 떡/생크림 케이크 사전 주문 (연동 픽업)</label>
+            <input type="checkbox" id="ck3"><label for="ck3">칠순 기념 레터링 케이크 사전 주문 (연동 픽업)</label>
           </div>
           <div class="check-row">
-            <input type="checkbox" id="chk4"><label for="chk4">가족 전원 신분증 및 모바일 항공권 확인</label>
+            <input type="checkbox" id="ck4"><label for="ck4">가족 전원 신분증 및 모바일 항공권 확인</label>
           </div>
         </div>
 
-        <div class="checklist-group">
-          <span class="check-label">📸 베스트 포토존 요약</span>
-          <div class="card-summary" style="font-size: 13px; line-height: 1.7; margin-bottom: 0;">
-            🍃 <strong>오설록 티 뮤지엄:</strong> 초록빛 차밭 앞 온 가족 단체 사진<br>
-            🌺 <strong>카멜리아 힐:</strong> 가을 억새길 속 동생 부부 커플 스냅<br>
-            🌊 <strong>섭지코지:</strong> 성산일출봉 바다를 등진 가족 파노라마 컷<br>
-            🎂 <strong>2일차 만찬장:</strong> 칠순 케이크 촛불식 & 축하 건배 컷<br>
-            🌈 <strong>무지개 해안도로:</strong> 알록달록 방호벽 위 나란히 앉은 엔딩 컷
-          </div>
+        <div class="check-card">
+          <div class="check-title">📸 매거진 베스트 컷 요약</div>
+          <p style="font-size: 12px; line-height: 1.6; color: #4b5563;">
+            • <strong>1일차 오설록:</strong> 초록빛 차밭 앞 온 가족 단체 컷<br>
+            • <strong>1일차 카멜리아:</strong> 억새와 핑크뮬리 속 예비부부 스냅<br>
+            • <strong>2일차 섭지코지:</strong> 성산일출봉 바다를 등진 대가족 기념사진<br>
+            • <strong>2일차 만찬장:</strong> 칠순 케이크 촛불식 & 축하 건배 컷<br>
+            • <strong>3일차 무지개도로:</strong> 방호벽 위 나란히 앉은 엔딩 컷
+          </p>
         </div>
 
-        <div class="checklist-group">
-          <span class="check-label">💡 부모님 케어 에티켓</span>
-          <div class="card-summary" style="font-size: 13px; line-height: 1.7; margin-bottom: 0;">
-            • 차량 내 미온수 생수와 부드러운 다과(오메기떡 등) 비치<br>
+        <div class="check-card">
+          <div class="check-title">💡 어르신 케어 에티켓</div>
+          <p style="font-size: 12px; line-height: 1.6; color: #4b5563;">
             • 비자림과 카멜리아 힐 산책을 위한 편안한 운동화 착용<br>
-            • 가을철 제주 바닷바람과 일교차를 대비한 가벼운 바람막이/숄 준비
-          </div>
+            • 가을 바닷바람과 일교차를 대비한 가벼운 가디건/숄 지참<br>
+            • 차내 미온수 생수와 부드러운 다과(오메기떡 등) 상시 구비
+          </p>
         </div>
       </section>
 
     </div>
   </main>
 
-  <!-- Bottom Nav -->
+  <!-- Bottom Nav Controls -->
   <footer class="mag-bottombar">
-    <button class="nav-btn" id="prevBtn" onclick="movePage(-1)" disabled>
-      ‹ 이전
-    </button>
-    <div class="toc-quick">
-      <div class="dot active" onclick="goToPage(0)"></div>
-      <div class="dot" onclick="goToPage(1)"></div>
-      <div class="dot" onclick="goToPage(2)"></div>
-      <div class="dot" onclick="goToPage(3)"></div>
-      <div class="dot" onclick="goToPage(4)"></div>
+    <button class="nav-btn" id="prevBtn" onclick="movePage(-1)" disabled>‹ 이전</button>
+    <div class="toc-quick" id="dotsContainer">
+      <!-- Generated via JS -->
     </div>
-    <button class="nav-btn" id="nextBtn" onclick="movePage(1)">
-      다음 ›
-    </button>
+    <button class="nav-btn" id="nextBtn" onclick="movePage(1)">다음 ›</button>
   </footer>
 
 </div>
 
 <script>
   let currentPage = 0;
-  const totalPages = 5;
+  const totalPages = 8;
   const slider = document.getElementById('slider');
   const indicator = document.getElementById('pageIndicator');
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
-  const dots = document.querySelectorAll('.dot');
+  const navChips = document.querySelectorAll('.nav-chip');
   const viewport = document.getElementById('viewport');
+  const dotsContainer = document.getElementById('dotsContainer');
+
+  // Create bottom dots
+  for (let i = 0; i < totalPages; i++) {
+    const dot = document.createElement('div');
+    dot.className = `dot ${i === 0 ? 'active' : ''}`;
+    dot.onclick = () => goToPage(i);
+    dotsContainer.appendChild(dot);
+  }
 
   function updateView() {
     slider.style.transform = `translateX(-${currentPage * 100}%)`;
@@ -536,11 +682,21 @@
     prevBtn.disabled = currentPage === 0;
     nextBtn.disabled = currentPage === totalPages - 1;
 
-    dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentPage);
+    // Update Quick Nav Chips
+    navChips.forEach((chip, idx) => {
+      chip.classList.toggle('active', idx === currentPage);
+      if (idx === currentPage) {
+        chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
     });
 
-    // Reset scroll of current page to top
+    // Update Bottom Dots
+    const dots = document.querySelectorAll('.dot');
+    dots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentPage);
+    });
+
+    // Reset scroll of current page
     const pages = document.querySelectorAll('.page');
     if (pages[currentPage]) {
       pages[currentPage].scrollTop = 0;
@@ -557,7 +713,7 @@
     updateView();
   }
 
-  // Touch Swipe Gesture Support
+  // Touch Swipe Support
   let touchStartX = 0;
   let touchEndX = 0;
 
@@ -567,18 +723,10 @@
 
   viewport.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
+    const threshold = 45;
+    if (touchEndX < touchStartX - threshold) movePage(1);
+    if (touchEndX > touchStartX + threshold) movePage(-1);
   }, { passive: true });
-
-  function handleSwipe() {
-    const threshold = 45; // swipe sensitivity
-    if (touchEndX < touchStartX - threshold) {
-      movePage(1); // Swipe Left -> Next Page
-    }
-    if (touchEndX > touchStartX + threshold) {
-      movePage(-1); // Swipe Right -> Prev Page
-    }
-  }
 </script>
 
 </body>
