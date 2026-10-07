@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>제주 가족여행 모바일 가이드북</title>
+  <style>
+    :root {
+      --primary: #10b981;
+      --primary-dark: #059669;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --accent-badge: #e0f2fe;
+      --accent-badge-txt: #0369a1;
+      --border-color: #e2e8f0;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Pretendard", "Segoe UI", sans-serif; -webkit-tap-highlight-color: transparent; }
+    body { background-color: var(--bg); color: var(--text-main); line-height: 1.5; padding-bottom: 70px; }
+
+    /* Header Banner */
+    header {
+      background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+      color: #fff;
+      padding: 24px 20px 20px;
+      border-bottom-left-radius: 24px;
+      border-bottom-right-radius: 24px;
+      box-shadow: 0 4px 20px rgba(5, 150, 105, 0.2);
+    }
+    .header-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    header h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; letter-spacing: -0.5px; }
+    header p { font-size: 13px; opacity: 0.9; }
+
+    /* Sticky Navigation Tabs */
+    .tab-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #ffffff;
+      display: flex;
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .tab-btn {
+      flex: 1;
+      border: none;
+      background: none;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s;
+    }
+    .tab-btn.active {
+      color: var(--primary-dark);
+      font-weight: 700;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 20%;
+      right: 20%;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px;
+    }
+
+    /* Main Container */
+    .container { padding: 16px; max-width: 600px; margin: 0 auto; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Summary Card */
+    .summary-box {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 16px;
+      border: 1px solid var(--border-color);
+    }
+    .summary-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--primary-dark); }
+    .summary-desc { font-size: 13px; color: var(--text-muted); }
+
+    /* Timeline & Place Cards */
+    .timeline { position: relative; padding-left: 20px; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 10px;
+      bottom: 10px;
+      width: 2px;
+      background: #e2e8f0;
+    }
+    .timeline-item { position: relative; margin-bottom: 16px; }
+    .timeline-dot {
+      position: absolute;
+      left: -20px;
+      top: 14px;
+      width: 14px;
+      height: 14px;
+      border-radius: 5px;
+      background: #fff;
+      border: 3px solid var(--primary);
+      box-shadow: 0 0 0 2px #fff;
+    }
+
+    .place-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+    .place-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+    .place-time { font-size: 12px; font-weight: 700; color: var(--primary-dark); }
+    .place-type {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      background: var(--accent-badge);
+      color: var(--accent-badge-txt);
+    }
+    .place-type.food { background: #fef3c7; color: #b45309; }
+    .place-type.hotel { background: #f3e8ff; color: #7e22ce; }
+
+    .place-name { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .place-desc { font-size: 13px; color: #475569; margin-bottom: 12px; }
+
+    /* Guide Badge & Points */
+    .point-box {
+      background: #f1f5f9;
+      border-radius: 10px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #334155;
+    }
+    .point-row { display: flex; align-items: flex-start; margin-bottom: 4px; }
+    .point-row:last-child { margin-bottom: 0; }
+    .point-tag {
+      font-weight: 700;
+      min-width: 58px;
+      color: #0f766e;
+    }
+
+    /* Checklist Styling */
+    .check-card {
+      background: #fff;
+      border-radius: var(--radius);
+      padding: 16px;
+      margin-bottom: 12px;
+      border: 1px solid var(--border-color);
+    }
+    .check-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 0;
+      border-bottom: 1px dashed #f1f5f9;
+      font-size: 13px;
+    }
+    .check-item:last-child { border-bottom: none; }
+    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <!-- Top Title -->
+  <header>
+    <div class="header-badge">가족 힐링 & 축하 여행</div>
+    <h1>제주 2박 3일 여행 가이드</h1>
+    <p>2026. 10. 8(목) ~ 10. 10(토) | 아버지 칠순 & 동생 내외 결혼 기념</p>
+  </header>
+
+  <!-- Sticky Tabs -->
+  <nav class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab(0)">1일차 (서남부)</button>
+    <button class="tab-btn" onclick="switchTab(1)">2일차 (동부)</button>
+    <button class="tab-btn" onclick="switchTab(2)">3일차 (귀경)</button>
+    <button class="tab-btn" onclick="switchTab(3)">체크리스트</button>
+  </nav>
+
+  <div class="container">
+
+    <!-- TAB 1: 1일차 -->
+    <section id="tab-0" class="tab-content active">
+      <div class="summary-box">
+        <div class="summary-title">DAY 1 : 녹차밭과 가을 정원, 통갈치 만찬</div>
+        <div class="summary-desc">제주공항(10:35) 도착 ➔ 서남부 평화로 이동 ➔ 칠순 축하 갈치 정식</div>
+      </div>
+
+      <div class="timeline">
+        <!-- 공항 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">10:35 ~ 11:30</span>
+              <span class="place-type">이동</span>
+            </div>
+            <h2 class="place-name">제주국제공항 ➔ 렌트카 인수</h2>
+            <p class="place-desc">공항 수하물 수령 후 5번 게이트 렌트카 하우스 셔틀 탑승. 대형 승합/SUV 수령 후 평화로를 타고 중문/안덕 방면으로 여유롭게 이동합니다.</p>
+          </div>
+        </div>
+
+        <!-- 점심 식사 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">12:30 ~ 13:40</span>
+              <span class="place-type food">점심 식사</span>
+            </div>
+            <h2 class="place-name">가람돌솥밥 (중문)</h2>
+            <p class="place-desc">도착 첫날, 어르신들의 속을 편안하고 든든하게 달래주는 제주 향토 한식당입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">추천메뉴</span><span>전복돌솥밥, 성게돌솥밥, 옥돔구이 정식</span></div>
+              <div class="point-row"><span class="point-tag">특징</span><span>마가린과 간장을 곁들여 비비는 고소한 돌솥밥과 담백한 밑반찬</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 오설록 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">14:00 ~ 15:10</span>
+              <span class="place-type">관광 / 티타임</span>
+            </div>
+            <h2 class="place-name">오설록 티 뮤지엄</h2>
+            <p class="place-desc">서부 중산간의 드넓은 녹차밭과 현대적 복합문화공간이 어우러진 대표 명소입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">관람팁</span><span>평탄한 흙길로 부모님 무릎 부담 없이 산책 가능</span></div>
+              <div class="point-row"><span class="point-tag">포토스폿</span><span>끝없이 펼쳐진 초록 녹차밭 앞 온 가족 단체 사진</span></div>
+              <div class="point-row"><span class="point-tag">추천디저트</span><span>실내 카페 녹차 소프트 아이스크림 & 롤케이크</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 카멜리아 힐 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">15:30 ~ 16:40</span>
+              <span class="place-type">자연 / 산책</span>
+            </div>
+            <h2 class="place-name">카멜리아 힐</h2>
+            <p class="place-desc">오설록에서 차로 10분 거리. 10월 초가을 억새, 핑크뮬리, 온실 정원이 아름다운 수목원입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">관람팁</span><span>전 구간 경사가 완만한 평지 숲길로 어르신 산책에 최적</span></div>
+              <div class="point-row"><span class="point-tag">포토스폿</span><span>예쁜 글귀 현수막길 & 억새 정원 (예비부부 커플 스냅 명소)</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 숙소 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">17:15 ~ 18:00</span>
+              <span class="place-type hotel">숙소 체크인</span>
+            </div>
+            <h2 class="place-name">호텔골든데이지 서귀포오션</h2>
+            <p class="place-desc">서귀포 시내 중심부에 위치하여 천지연 및 올레시장 접근성이 뛰어난 첫날 숙소입니다. 체크인 후 짐 정리 및 휴식을 취합니다.</p>
+          </div>
+        </div>
+
+        <!-- 저녁 식사 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">18:15 ~ 19:45</span>
+              <span class="place-type food">칠순 기념 만찬</span>
+            </div>
+            <h2 class="place-name">색달식당 순살갈치조림 서귀포본점</h2>
+            <p class="place-desc">테이블을 가로지르는 대형 통갈치구이와 조림 한상으로 칠순 축하 분위기를 돋우는 명가입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">추천메뉴</span><span>통갈치조림 + 통갈치구이 세트</span></div>
+              <div class="point-row"><span class="point-tag">특징</span><span>직원이 직접 가시를 전부 발라주어 어르신들이 식사하기 편함</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 올레시장 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">20:00 ~ 21:00</span>
+              <span class="place-type">야간 산책</span>
+            </div>
+            <h2 class="place-name">서귀포 매일올레시장</h2>
+            <p class="place-desc">호텔 도보 5~10분 거리. 배부른 식사 후 가족들과 소화 겸 둘러보며 야식용 오메기떡과 당도 높은 제철 감귤·황금향을 구입하기 좋습니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: 2일차 -->
+    <section id="tab-1" class="tab-content">
+      <div class="summary-box">
+        <div class="summary-title">DAY 2 : 동부 에메랄드 바다 & 비자림, 흑돼지 축하연</div>
+        <div class="summary-desc">서귀포 출발 ➔ 섭지코지 & 비자림 ➔ 신라스테이 입성 ➔ 흑돼지 파티</div>
+      </div>
+
+      <div class="timeline">
+        <!-- 해안 드라이브 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">09:00 ~ 10:30</span>
+              <span class="place-type">해안 드라이브</span>
+            </div>
+            <h2 class="place-name">호텔 체크아웃 ➔ 성산 이동</h2>
+            <p class="place-desc">서귀포를 출발해 남원, 표선 해안선을 끼고 달리며 성산 방면으로 상쾌한 아침 드라이브를 즐깁니다.</p>
+          </div>
+        </div>
+
+        <!-- 섭지코지 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">10:30 ~ 11:50</span>
+              <span class="place-type">해안 절경</span>
+            </div>
+            <h2 class="place-name">섭지코지</h2>
+            <p class="place-desc">푸른 동쪽 바다와 기암괴석, 붉은 화산재 언덕이 어우러진 해안 산책로입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">관람팁</span><span>붉은오름 정상 계단 대신 완만한 평탄 해안 산책로 걷기</span></div>
+              <div class="point-row"><span class="point-tag">포토스폿</span><span>성산일출봉과 하얀 등대가 바라보이는 바다 앞 기념 촬영</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 점심 식사 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">12:10 ~ 13:20</span>
+              <span class="place-type food">점심 식사</span>
+            </div>
+            <h2 class="place-name">바다의집 (성산 오조리)</h2>
+            <p class="place-desc">성산일출봉이 보이는 한적한 바닷가에 위치한 성게 및 해산물 전문점입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">추천메뉴</span><span>성게미역국, 성게비빔밥, 전복뚝배기</span></div>
+              <div class="point-row"><span class="point-tag">특징</span><span>신선한 성게알이 듬뿍 들어가 국물이 진하고 비리지 않아 어르신 만족도 최고</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 비자림 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">13:50 ~ 15:10</span>
+              <span class="place-type">원시림 힐링</span>
+            </div>
+            <h2 class="place-name">비자림</h2>
+            <p class="place-desc">수백 년 된 비자나무 수천 그루가 군락을 이룬 제주 대표 원시림 천연기념물입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">관람팁</span><span>부드러운 화산송이 흙길로 평평하여 부모님 관절 힐링에 최상</span></div>
+              <div class="point-row"><span class="point-tag">힐링포인트</span><span>상쾌한 피톤치드 숲속 쉼터에서 숨 고르기</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 함덕 & 카페 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">15:40 ~ 17:00</span>
+              <span class="place-type">해변 / 오션뷰 티타임</span>
+            </div>
+            <h2 class="place-name">함덕해수욕장 & 카페 델문도</h2>
+            <p class="place-desc">에메랄드빛 바다 바로 위에 자리한 베이커리 카페 테라스에서 바다를 보며 휴식을 취합니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">특징</span><span>실내·테라스 전면 바다 뷰, 갓 구운 빵과 커피로 편안한 대화 시간</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 숙소 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">17:40 ~ 18:30</span>
+              <span class="place-type hotel">숙소 체크인</span>
+            </div>
+            <h2 class="place-name">신라스테이 제주</h2>
+            <p class="place-desc">제주시 연동 중심가에 위치해 다음 날 공항 이동과 저녁 번화가 식사가 매우 편리합니다. 체크인 후 가벼운 옷차림으로 전환합니다.</p>
+          </div>
+        </div>
+
+        <!-- 저녁 식사 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">18:45 ~ 20:30</span>
+              <span class="place-type food">가족 축하 파티</span>
+            </div>
+            <h2 class="place-name">돌담흑돼지 연동점 (또는 숙성도 노형점)</h2>
+            <p class="place-desc">호텔 도보 이동 가능. 직원이 전문적으로 고기를 구워주어 가족 모두가 온전히 대화에 집중할 수 있습니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">하이라이트</span><span>준비해 온 칠순 축하 케이크 촛불식 & 동생 내외 결혼 축하 건배!</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: 3일차 -->
+    <section id="tab-2" class="tab-content">
+      <div class="summary-box">
+        <div class="summary-title">DAY 3 : 무지개 해안도로 드라이브 & 깔끔한 귀경</div>
+        <div class="summary-desc">체크아웃 ➔ 무지개 해안도로 ➔ 자매국수 ➔ 렌트카 반납 ➔ 공항(14:00 출발)</div>
+      </div>
+
+      <div class="timeline">
+        <!-- 체크아웃 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">09:30 ~ 10:15</span>
+              <span class="place-type">체크아웃</span>
+            </div>
+            <h2 class="place-name">신라스테이 제주 체크아웃</h2>
+            <p class="place-desc">호텔 체크아웃 후 트렁크에 짐을 정리하고 공항 북서쪽 해안도로 방면으로 출발합니다.</p>
+          </div>
+        </div>
+
+        <!-- 무지개도로 & 용두암 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">10:30 ~ 11:20</span>
+              <span class="place-type">해안 포토존</span>
+            </div>
+            <h2 class="place-name">도두동 무지개 해안도로 & 용두암</h2>
+            <p class="place-desc">푸른 바다를 따라 알록달록 무지개색 방호벽이 이어지는 명소입니다. 방호벽 위에 가족이 나란히 앉아 경쾌한 마지막 단체 사진을 남긴 뒤, 차로 5분 거리인 용두암의 기암 절경을 가볍게 조망합니다.</p>
+          </div>
+        </div>
+
+        <!-- 점심 식사 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">11:30 ~ 12:35</span>
+              <span class="place-type food">점심 식사</span>
+            </div>
+            <h2 class="place-name">자매국수 (도두항 본점)</h2>
+            <p class="place-desc">진하고 뽀얀 사골 육수의 제주식 고기국수와 부드러운 돔베고기 전문점입니다.</p>
+            <div class="point-box">
+              <div class="point-row"><span class="point-tag">추천메뉴</span><span>고기국수, 비빔국수, 돔베고기</span></div>
+              <div class="point-row"><span class="point-tag">시설특징</span><span>신축 대형 단독 건물로 엘리베이터, 넓은 주차장 구비</span></div>
+              <div class="point-row"><span class="point-tag">이용팁</span><span>'캐치테이블' 앱으로 이동 중 원격 줄서기 이용 필수</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 렌트카 반납 & 귀경 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="place-card">
+            <div class="place-header">
+              <span class="place-time">12:45 ~ 14:00</span>
+              <span class="place-type">공항 이동 & 귀경</span>
+            </div>
+            <h2 class="place-name">렌트카 반납 & 제주공항 출발</h2>
+            <p class="place-desc">식당에서 10분 거리의 렌트카 영업소에 차량을 반납하고 공항 셔틀에 탑승합니다. 제주공항 3층에서 탑승 수속 및 면세점을 이용한 뒤 오후 2시 비행기로 서울로 향합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: 체크리스트 -->
+    <section id="tab-3" class="tab-content">
+      <div class="check-card">
+        <div class="check-title">📋 사전 예약 & 준비 필수 항목</div>
+        <div class="check-item"><input type="checkbox" id="c1"><label for="c1">1일차 저녁 (색달식당) 가족 단체 룸/좌석 예약</label></div>
+        <div class="check-item"><input type="checkbox" id="c2"><label for="c2">2일차 저녁 (흑돼지 구이집) 사전 예약 또는 앱 원격 줄서기</label></div>
+        <div class="check-item"><input type="checkbox" id="c3"><label for="c3">칠순 기념 레터링 케이크 사전 주문 (제주시 연동 픽업)</label></div>
+        <div class="check-item"><input type="checkbox" id="c4"><label for="c4">부모님 신분증 / 항공권 모바일 체크인</label></div>
+      </div>
+
+      <div class="check-card">
+        <div class="check-title">🚗 차량 및 부모님 편의 준비</div>
+        <div class="check-item"><input type="checkbox" id="c5"><label for="c5">차량 내 생수 및 부모님 드실 부드러운 다과 구비</label></div>
+        <div class="check-item"><input type="checkbox" id="c6"><label for="c6">일교차 대비 얇은 겉옷 또는 가디건 지참</label></div>
+        <div class="check-item"><input type="checkbox" id="c7"><label for="c7">편안한 운동화 착용 (비자림 화산송이 산책용)</label></div>
+      </div>
+
+      <div class="check-card">
+        <div class="check-title">📸 기념사진 포인트 요약</div>
+        <p style="font-size: 13px; color: #475569; line-height: 1.6;">
+          • <strong>1일차 오설록:</strong> 푸른 녹차밭 배경 온 가족 단체 사진<br>
+          • <strong>1일차 카멜리아힐:</strong> 억새와 핑크뮬리 속 예비부부 커플 스냅<br>
+          • <strong>2일차 섭지코지:</strong> 성산일출봉과 바다를 배경으로 대가족 기념사진<br>
+          • <strong>2일차 저녁:</strong> 흑돼지 식당에서 칠순 케이크 촛불식 & 축하 건배<br>
+          • <strong>3일차 무지개도로:</strong> 방호벽 위에 나란히 앉아 경쾌한 엔딩 컷
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    function switchTab(index) {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach((tab, i) => {
+        if (i === index) {
+          tab.classList.add('active');
+          contents[i].classList.add('active');
+        } else {
+          tab.classList.remove('active');
+          contents[i].classList.remove('active');
+        }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
