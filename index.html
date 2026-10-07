@@ -361,6 +361,17 @@
       margin-top: -6px;
     }
 
+    .route-strip {
+      background: var(--surface);
+      border: 1px dashed var(--accent);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 11.5px;
+      line-height: 1.6;
+      color: #374151;
+    }
+    .route-strip strong { color: var(--primary); }
+
     /* Cover Page (가을 억새 — 제주 금악오름 노을, Unsplash "a field of grass" / 대체 이미지: 성산일출봉 / Jaemin Yu, Unsplash) */
     .cover-page {
       background:
@@ -480,9 +491,9 @@
     <nav class="quick-nav" id="quickNav">
       <button class="nav-chip active" onclick="goToPage(0)">표지</button>
       <button class="nav-chip" onclick="goToPage(1)">전체 일정표</button>
-      <button class="nav-chip" onclick="goToPage(2)">1일차 점심·오설록</button>
+      <button class="nav-chip" onclick="goToPage(2)">1일차 칼국수·오설록</button>
       <button class="nav-chip" onclick="goToPage(3)">1일차 카멜리아·통갈치</button>
-      <button class="nav-chip" onclick="goToPage(4)">2일차 섭지코지·성게</button>
+      <button class="nav-chip" onclick="goToPage(4)">2일차 섭지코지·전복죽</button>
       <button class="nav-chip" onclick="goToPage(5)">2일차 비자림·함덕</button>
       <button class="nav-chip" onclick="goToPage(6)">2일차 흑돼지 파티</button>
       <button class="nav-chip" onclick="goToPage(7)">3일차 무지개·국수</button>
@@ -501,10 +512,10 @@
         </div>
         <div>
           <h1 class="cover-title">제주,<br>우리 가족의<br>눈부신 순간</h1>
-          <p class="cover-sub">아버지 칠순 기념 & 예비부부 결혼 축하 힐링 여행<br>동선을 최적화한 반시계 루프 매거진</p>
+          <p class="cover-sub">아버지 칠순 기념 & 예비부부 결혼 축하 힐링 여행<br>제주 한 바퀴, 반시계방향 일주 매거진</p>
           <div class="cover-meta">
             <div>🗓 <strong>일시:</strong> 2026. 10. 8 (목) ~ 10. 10 (토)</div>
-            <div>🚗 <strong>동선:</strong> 서남부 정원 ➔ 동부 해안·숲 ➔ 북부 공항</div>
+            <div>🚗 <strong>동선:</strong> 서부 해안 ➔ 서귀포 ➔ 동부 해안·숲 ➔ 제주시 ➔ 공항</div>
             <div>🏨 <strong>숙소:</strong> 호텔골든데이지 서귀포 / 신라스테이 제주</div>
           </div>
         </div>
@@ -519,50 +530,56 @@
           <div class="page-day-tag">OVERVIEW</div>
           <h2 class="page-headline">2박 3일 전체 일정표</h2>
         </div>
+        <div class="route-strip">
+          <strong>🔄 반시계방향 일주 동선</strong><br>
+          제주공항 → 애월·한림 → 안덕 → 서귀포 ⟶ 성산 → 구좌 → 함덕 → 제주시 ⟶ 도두·이호 → 제주공항
+        </div>
         <p class="map-hint">📍 장소명을 누르면 네이버지도에서 위치를 확인할 수 있어요.</p>
 
         <div class="overview-day-card">
           <div class="day-badge-title">
             <h3>DAY 1 • 10월 8일 (목)</h3>
-            <span>서남부 정원 & 갈치만찬</span>
+            <span>서부 해안 & 갈치만찬</span>
           </div>
           <table class="timeline-table">
-            <tr><td class="td-time">10:35~11:30</td><td class="td-spot">제주공항</td><td class="td-desc">도착 & 렌트카 수령 후 평화로 이동</td></tr>
-            <tr><td class="td-time">12:30~13:40</td><td class="td-spot">가람돌솥밥</td><td class="td-desc">전복돌솥밥·옥돔구이 정식 (점심)</td></tr>
-            <tr><td class="td-time">14:00~15:10</td><td class="td-spot">오설록 티뮤지엄</td><td class="td-desc">녹차밭 가족 단체사진 & 아이스크림</td></tr>
-            <tr><td class="td-time">15:30~16:40</td><td class="td-spot">카멜리아 힐</td><td class="td-desc">초가을 억새·정원 산책 & 커플 스냅</td></tr>
-            <tr><td class="td-time">17:15~18:00</td><td class="td-spot">골든데이지</td><td class="td-desc">서귀포 호텔 체크인 및 휴식</td></tr>
-            <tr><td class="td-time">18:15~19:45</td><td class="td-spot">색달식당</td><td class="td-desc"><strong>칠순 기념 통갈치구이 & 조림 만찬</strong></td></tr>
+            <tr><td class="td-time">10:35~11:30</td><td class="td-spot">제주공항</td><td class="td-desc">도착 & 렌트카 수령 후 애월 해안도로로 서쪽 이동</td></tr>
+            <tr><td class="td-time">12:20~13:20</td><td class="td-spot">한림칼국수</td><td class="td-desc">진한 보말칼국수 (점심)</td></tr>
+            <tr><td class="td-time">13:20~13:50</td><td class="td-spot">협재해변</td><td class="td-desc">비양도가 보이는 에메랄드 해변 짧은 산책</td></tr>
+            <tr><td class="td-time">14:15~15:25</td><td class="td-spot">오설록 티뮤지엄</td><td class="td-desc">녹차밭 가족 단체사진 & 아이스크림</td></tr>
+            <tr><td class="td-time">15:35~16:45</td><td class="td-spot">카멜리아 힐</td><td class="td-desc">가을 정원 산책 & 커플 스냅</td></tr>
+            <tr><td class="td-time">17:25~18:00</td><td class="td-spot">골든데이지</td><td class="td-desc">서귀포 호텔 체크인 및 휴식</td></tr>
+            <tr><td class="td-time">18:15~19:45</td><td class="td-spot">서귀포괸당네</td><td class="td-desc"><strong>칠순 기념 통갈치조림 & 구이 만찬</strong></td></tr>
             <tr><td class="td-time">20:00~21:00</td><td class="td-spot">올레시장</td><td class="td-desc">야식용 오메기떡 & 황금향 쇼핑</td></tr>
           </table>
         </div>
 
         <div class="overview-day-card">
           <div class="day-badge-title">
-            <h3>DAY 2 • 10월 9일 (금)</h3>
+            <h3>DAY 2 • 10월 9일 (금·한글날)</h3>
             <span>동부 해안 & 흑돼지 파티</span>
           </div>
           <table class="timeline-table">
-            <tr><td class="td-time">09:00~10:30</td><td class="td-spot">해안 드라이브</td><td class="td-desc">호텔 체크아웃 후 성산 방면 이동</td></tr>
-            <tr><td class="td-time">10:30~11:50</td><td class="td-spot">섭지코지</td><td class="td-desc">붉은오름 완만한 해안 산책로 걷기</td></tr>
-            <tr><td class="td-time">12:10~13:20</td><td class="td-spot">바다의 집</td><td class="td-desc">진한 성게미역국 & 성게비빔밥 (점심)</td></tr>
-            <tr><td class="td-time">13:50~15:10</td><td class="td-spot">비자림</td><td class="td-desc">화산송이 평지 숲길 피톤치드 힐링</td></tr>
-            <tr><td class="td-time">15:40~17:00</td><td class="td-spot">함덕 & 델문도</td><td class="td-desc">에메랄드 해변 오션뷰 테라스 티타임</td></tr>
-            <tr><td class="td-time">17:40~18:30</td><td class="td-spot">신라스테이</td><td class="td-desc">제주시 연동 호텔 체크인</td></tr>
-            <tr><td class="td-time">18:45~20:30</td><td class="td-spot">돌담흑돼지</td><td class="td-desc"><strong>칠순 케이크 촛불식 & 결혼 축하연</strong></td></tr>
+            <tr><td class="td-time">09:00~10:00</td><td class="td-spot">해안 드라이브</td><td class="td-desc">체크아웃 후 남동부 해안 따라 성산 이동</td></tr>
+            <tr><td class="td-time">10:00~11:20</td><td class="td-spot">섭지코지</td><td class="td-desc">완만한 해안 산책로 걷기</td></tr>
+            <tr><td class="td-time">11:40~12:50</td><td class="td-spot">오조해녀의집</td><td class="td-desc">부드러운 전복죽 (점심) & 성산일출봉 조망</td></tr>
+            <tr><td class="td-time">13:20~14:40</td><td class="td-spot">비자림</td><td class="td-desc">화산송이 평지 숲길 피톤치드 힐링</td></tr>
+            <tr><td class="td-time">15:10~16:30</td><td class="td-spot">함덕 & 델문도</td><td class="td-desc">에메랄드 해변 오션뷰 테라스 티타임</td></tr>
+            <tr><td class="td-time">17:00~17:30</td><td class="td-spot">용두암</td><td class="td-desc">제주시로 들어가는 길에 해안 기암 감상</td></tr>
+            <tr><td class="td-time">17:50~18:30</td><td class="td-spot">신라스테이</td><td class="td-desc">제주시 연동 체크인 & 케이크 픽업</td></tr>
+            <tr><td class="td-time">18:45~20:30</td><td class="td-spot">늘봄흑돼지</td><td class="td-desc"><strong>칠순 케이크 촛불식 & 결혼 축하연</strong></td></tr>
           </table>
         </div>
 
         <div class="overview-day-card">
           <div class="day-badge-title">
             <h3>DAY 3 • 10월 10일 (토)</h3>
-            <span>무지개도로 & 귀경</span>
+            <span>서쪽 해안 마무리 & 귀경</span>
           </div>
           <table class="timeline-table">
-            <tr><td class="td-time">09:30~10:15</td><td class="td-spot">체크아웃</td><td class="td-desc">신라스테이 출발 후 북부 해안 이동</td></tr>
-            <tr><td class="td-time">10:30~11:20</td><td class="td-spot">무지개도로</td><td class="td-desc">방호벽 위 경쾌한 단체사진 & 용두암</td></tr>
-            <tr><td class="td-time">11:30~12:35</td><td class="td-spot">자매국수 본점</td><td class="td-desc">진한 고기국수 & 돔베고기 (점심)</td></tr>
-            <tr><td class="td-time">12:45~14:00</td><td class="td-spot">제주공항</td><td class="td-desc">렌트카 반납 후 14:00 비행기 출발</td></tr>
+            <tr><td class="td-time">09:30~10:00</td><td class="td-spot">체크아웃</td><td class="td-desc">신라스테이 출발 후 도두 해안으로 이동</td></tr>
+            <tr><td class="td-time">10:00~11:00</td><td class="td-spot">무지개도로</td><td class="td-desc">방호벽 위 엔딩 단체사진 & 도두봉 조망</td></tr>
+            <tr><td class="td-time">11:10~12:20</td><td class="td-spot">자매국수</td><td class="td-desc">진한 고기국수 & 돔베고기 (점심)</td></tr>
+            <tr><td class="td-time">12:30~14:00</td><td class="td-spot">제주공항</td><td class="td-desc">렌트카 반납 후 14:00 비행기 출발</td></tr>
           </table>
         </div>
       </section>
@@ -571,28 +588,28 @@
       <section class="page">
         <div class="page-title-box">
           <div class="page-day-tag">DAY 01 • PART 1</div>
-          <h2 class="page-headline">제주 입도 & 녹차밭 산책</h2>
+          <h2 class="page-headline">서쪽 해안 & 녹차밭 산책</h2>
         </div>
         <article class="spot-card">
           <div class="spot-image-box">
-            <img class="spot-image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="전복돌솥밥">
-            <span class="badge-float food">점심 식사 (12:30)</span>
+            <img class="spot-image" src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=600&q=80" alt="보말칼국수">
+            <span class="badge-float food">점심 식사 (12:20)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">12:30 ~ 13:40 | 중문/안덕</div>
-            <h3 class="spot-name">가람돌솥밥</h3>
-            <p class="spot-desc">어르신들의 속을 따뜻하게 달래주는 고소한 전복돌솥밥, 성게돌솥밥과 담백한 옥돔구이 정식입니다.</p>
-            <div class="spot-curation"><strong>EDITOR'S TIP:</strong> 마가린과 간장양념을 살짝 비벼 고소함을 극대화하고, 정갈한 밑반찬으로 부모님 만족도가 높습니다.</div>
-            <div class="spot-links" data-q="가람돌솥밥"></div>
+            <div class="spot-time">12:20 ~ 13:20 | 한림읍 (협재해변 인근)</div>
+            <h3 class="spot-name">한림칼국수 제주본점 (보말칼국수)</h3>
+            <p class="spot-desc">제주 바다의 보말(바다고둥)을 넣어 진하게 끓인 보말칼국수 전문점. 따뜻하고 부드러운 국물이라 비행 후 어르신들의 첫 끼로 부담이 없습니다.</p>
+            <div class="spot-curation"><strong>ROUTE TIP:</strong> 공항에서 애월 해안도로를 따라 서쪽으로 내려오는 길목입니다. 식사 후 바로 옆 협재해변에서 비양도를 배경으로 잠깐 산책하세요. (수요일 휴무 · 목요일 방문 가능)</div>
+            <div class="spot-links" data-q="한림칼국수 제주본점"></div>
           </div>
         </article>
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80" alt="오설록">
-            <span class="badge-float">산책 / 카페 (14:00)</span>
+            <span class="badge-float">산책 / 카페 (14:15)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">14:00 ~ 15:10 | 안덕면</div>
+            <div class="spot-time">14:15 ~ 15:25 | 안덕면</div>
             <h3 class="spot-name">오설록 티 뮤지엄</h3>
             <p class="spot-desc">끝없이 펼쳐진 초록빛 녹차밭과 현대적인 실내 복합 전시관. 평탄한 산책로가 조성되어 걷기 매우 편안합니다.</p>
             <div class="spot-curation"><strong>PHOTO SPOT:</strong> 녹차밭 사잇길에서 온 가족 단체 사진을 남긴 뒤, 시원한 녹차 아이스크림을 즐기세요.</div>
@@ -610,13 +627,13 @@
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="카멜리아힐">
-            <span class="badge-float">힐링 수목원 (15:30)</span>
+            <span class="badge-float">힐링 수목원 (15:35)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">15:30 ~ 16:40 | 안덕면</div>
+            <div class="spot-time">15:35 ~ 16:45 | 안덕면</div>
             <h3 class="spot-name">카멜리아 힐</h3>
-            <p class="spot-desc">오설록에서 차로 10분 거리. 10월 억새와 핑크뮬리, 온실 정원이 펼쳐지는 완만한 평지 숲길입니다.</p>
-            <div class="spot-curation"><strong>COUPLE SNAP:</strong> 사랑스러운 글귀가 적힌 오솔길은 예비부부 커플 스냅과 가족 기념사진 명소입니다.</div>
+            <p class="spot-desc">오설록에서 가까운 동백 수목원. 가을 정원과 온실이 이어지는 완만한 평지 숲길이라 어르신들도 편하게 걸으실 수 있습니다.</p>
+            <div class="spot-curation"><strong>COUPLE SNAP:</strong> 사랑스러운 글귀가 적힌 오솔길은 예비부부 커플 스냅과 가족 기념사진 명소입니다. 관람 후 동쪽 서귀포 시내로 이동해 체크인합니다.</div>
             <div class="spot-links" data-q="카멜리아힐" data-web="https://www.camelliahill.co.kr/"></div>
           </div>
         </article>
@@ -626,11 +643,11 @@
             <span class="badge-float food">칠순 기념 만찬 (18:15)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">18:15 ~ 19:45 | 서귀포</div>
-            <h3 class="spot-name">색달식당 (통갈치구이 & 조림)</h3>
-            <p class="spot-desc">골든데이지 호텔 체크인 후 방문하는 대망의 칠순 축하연. 테이블 전체를 채우는 웅장한 통갈치 한상입니다.</p>
-            <div class="spot-curation"><strong>HIGHLIGHT:</strong> 직원이 큰 가시를 모두 정갈하게 발라주어 어르신들이 대접받는 기분으로 편안하게 즐기실 수 있습니다.</div>
-            <div class="spot-links" data-q="색달식당 서귀포"></div>
+            <div class="spot-time">18:15 ~ 19:45 | 서귀포 시내 (칠십리로)</div>
+            <h3 class="spot-name">서귀포괸당네 (통갈치조림 & 구이)</h3>
+            <p class="spot-desc">제주산 갈치를 통째로 올리는 통갈치조림·구이 전문점. 호텔과 같은 서귀포 시내에 있어 체크인 후 짧게 이동해 칠순 만찬을 즐길 수 있습니다.</p>
+            <div class="spot-curation"><strong>BOOKING:</strong> 연중무휴 · 주차 가능. 인원과 메뉴, 도착 시간을 미리 예약해 두세요. 식사 후에는 같은 시내권의 올레시장으로 이어집니다.</div>
+            <div class="spot-links" data-q="서귀포괸당네"></div>
           </div>
         </article>
       </section>
@@ -639,15 +656,15 @@
       <section class="page">
         <div class="page-title-box">
           <div class="page-day-tag">DAY 02 • PART 1</div>
-          <h2 class="page-headline">푸른 해안로 & 성게 한상</h2>
+          <h2 class="page-headline">동쪽 해안 & 전복죽 한 그릇</h2>
         </div>
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="섭지코지">
-            <span class="badge-float">해안 산책 (10:30)</span>
+            <span class="badge-float">해안 산책 (10:00)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">10:30 ~ 11:50 | 성산읍</div>
+            <div class="spot-time">10:00 ~ 11:20 | 성산읍</div>
             <h3 class="spot-name">섭지코지</h3>
             <p class="spot-desc">성산일출봉 가파른 계단 대신 선택한 부드러운 해안길. 붉은 화산 언덕과 하얀 등대, 푸른 바다가 어우러집니다.</p>
             <div class="spot-curation"><strong>WALKING TIP:</strong> 완만한 해안 산책로를 걸으며 성산일출봉을 배경으로 가족사진을 담으세요.</div>
@@ -656,15 +673,15 @@
         </article>
         <article class="spot-card">
           <div class="spot-image-box">
-            <img class="spot-image" src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80" alt="성게미역국">
-            <span class="badge-float food">점심 식사 (12:10)</span>
+            <img class="spot-image" src="https://images.unsplash.com/photo-1534939561126-855b8675edd7?auto=format&fit=crop&w=600&q=80" alt="전복죽">
+            <span class="badge-float food">점심 식사 (11:40)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">12:10 ~ 13:20 | 성산 오조리</div>
-            <h3 class="spot-name">바다의 집 (성게미역국)</h3>
-            <p class="spot-desc">신선한 성게알이 듬뿍 들어가 맑고 깊은 감칠맛을 자랑하는 성게미역국과 성게비빔밥 전문점입니다.</p>
-            <div class="spot-curation"><strong>EDITOR'S NOTE:</strong> 비린 맛 없이 담백하고 시원해 부모님 세대의 선호도가 가장 높은 맛집입니다.</div>
-            <div class="spot-links" data-q="바다의집 성산 오조리"></div>
+            <div class="spot-time">11:40 ~ 12:50 | 성산읍 오조리</div>
+            <h3 class="spot-name">오조해녀의집 (전복죽)</h3>
+            <p class="spot-desc">성산일출봉 아래 오조리 바닷가의 전복죽 전문 식당. 전복을 넣어 고소하게 끓인 전복죽이 대표 메뉴로, 부드러워 어르신들도 편하게 드실 수 있습니다.</p>
+            <div class="spot-curation"><strong>EDITOR'S NOTE:</strong> 섭지코지에서 북쪽으로 바로 이어지는 동선입니다. 10월 9일은 한글날 공휴일이라 붐빌 수 있으니 영업 여부를 전화로 미리 확인하세요.</div>
+            <div class="spot-links" data-q="오조해녀의집"></div>
           </div>
         </article>
       </section>
@@ -678,10 +695,10 @@
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=600&q=80" alt="비자림">
-            <span class="badge-float">원시림 힐링 (13:50)</span>
+            <span class="badge-float">원시림 힐링 (13:20)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">13:50 ~ 15:10 | 구좌읍</div>
+            <div class="spot-time">13:20 ~ 14:40 | 구좌읍</div>
             <h3 class="spot-name">비자림</h3>
             <p class="spot-desc">500~800년 된 비자나무 수천 그루가 만든 시원한 녹음. 붉은 화산송이 흙길이 부드러워 관절 부담이 없습니다.</p>
             <div class="spot-curation"><strong>HEALING:</strong> 숲속 쉼터 벤치에서 깊게 들이마시는 피톤치드 향기는 부모님 건강을 위한 최고의 휴식입니다.</div>
@@ -691,13 +708,13 @@
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80" alt="함덕해수욕장">
-            <span class="badge-float">오션뷰 카페 (15:40)</span>
+            <span class="badge-float">오션뷰 카페 (15:10)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">15:40 ~ 17:00 | 조천읍</div>
+            <div class="spot-time">15:10 ~ 16:30 | 조천읍</div>
             <h3 class="spot-name">함덕해수욕장 & 카페 델문도</h3>
             <p class="spot-desc">에메랄드빛 바다 바로 위에 지어진 베이커리 카페 테라스에서 커피와 빵을 즐기며 여유로운 담소를 나눕니다.</p>
-            <div class="spot-curation"><strong>VIEW POINT:</strong> 테라스 난간 너머로 펼쳐지는 그림 같은 바다 파노라마 뷰를 감상해보세요.</div>
+            <div class="spot-curation"><strong>ROUTE TIP:</strong> 바다 파노라마를 감상한 뒤 제주시로 들어가는 길목의 용두암(17:00)에 잠시 들러 해안 기암을 보고 호텔로 향하세요. 되돌아가는 길 없이 이어집니다.</div>
             <div class="spot-links" data-q="카페 델문도 함덕"></div>
           </div>
         </article>
@@ -712,13 +729,13 @@
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="신라스테이">
-            <span class="badge-float hotel">호텔 체크인 (17:40)</span>
+            <span class="badge-float hotel">호텔 체크인 (17:50)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">17:40 ~ 18:30 | 제주시 연동</div>
+            <div class="spot-time">17:50 ~ 18:30 | 제주시 연동</div>
             <h3 class="spot-name">신라스테이 제주</h3>
             <p class="spot-desc">제주시 연동 번화가 중심에 위치한 깔끔한 숙소. 체크인 후 짐을 풀고 가벼운 복장으로 저녁 식사로 향합니다.</p>
-            <div class="spot-curation"><strong>LOCATION:</strong> 호텔 바로 주변에 프리미엄 흑돼지 명가들이 밀집해 있어 도보 이동이 수월합니다.</div>
+            <div class="spot-curation"><strong>LOCATION:</strong> 저녁 식당(늘봄흑돼지, 노형)까지는 차로 가까운 거리입니다. 칠순 케이크는 체크인 전후로 연동에서 픽업하세요.</div>
             <div class="spot-links" data-q="신라스테이 제주"></div>
           </div>
         </article>
@@ -728,11 +745,11 @@
             <span class="badge-float food">가족 축하 파티 (18:45)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">18:45 ~ 20:30 | 제주시 연동/노형</div>
-            <h3 class="spot-name">돌담흑돼지 연동점 (또는 숙성도)</h3>
-            <p class="spot-desc">육즙 가득한 프리미엄 숙성 흑돼지 근고기. 전문 직원이 직접 구워주어 가족 모두가 편안하게 대화에 집중할 수 있습니다.</p>
-            <div class="spot-curation"><strong>CELEBRATION:</strong> 준비한 칠순 축하 케이크 촛불식과 동생 내외의 결혼을 축하하는 뜻깊은 건배를 나누세요!</div>
-            <div class="spot-links" data-q="돌담흑돼지 연동"></div>
+            <div class="spot-time">18:45 ~ 20:30 | 제주시 노형 (한라대학로)</div>
+            <h3 class="spot-name">늘봄흑돼지</h3>
+            <p class="spot-desc">넓은 홀과 단체룸을 갖춘 대형 흑돼지 전문점. 직원이 고기를 구워주어 가족 모두가 대화와 축하에 집중할 수 있습니다.</p>
+            <div class="spot-curation"><strong>CELEBRATION:</strong> 단체룸으로 예약해 칠순 케이크 촛불식과 동생 내외의 결혼 축하 건배를 나누세요. 연중무휴이지만 공휴일 저녁이라 예약은 필수입니다.</div>
+            <div class="spot-links" data-q="늘봄흑돼지"></div>
           </div>
         </article>
       </section>
@@ -741,32 +758,32 @@
       <section class="page">
         <div class="page-title-box">
           <div class="page-day-tag">DAY 03 • FINAL</div>
-          <h2 class="page-headline">무지개 도로 & 든든한 귀경</h2>
+          <h2 class="page-headline">서쪽 해안 마무리 & 귀경</h2>
         </div>
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="무지개해안도로">
-            <span class="badge-float">포토존 (10:30)</span>
+            <span class="badge-float">포토존 (10:00)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">10:30 ~ 11:20 | 도두동</div>
-            <h3 class="spot-name">도두동 무지개 해안도로 & 용두암</h3>
+            <div class="spot-time">10:00 ~ 11:00 | 도두동</div>
+            <h3 class="spot-name">도두동 무지개 해안도로</h3>
             <p class="spot-desc">바다를 따라 알록달록 무지개 방호벽이 이어지는 명소. 방호벽 위에 나란히 앉아 경쾌한 마지막 단체 사진을 남깁니다.</p>
-            <div class="spot-curation"><strong>PHOTO SPOT:</strong> 밝고 활기찬 가족 스냅 명소. 차로 5분 거리인 용두암의 기암 절경도 함께 조망합니다.</div>
+            <div class="spot-curation"><strong>PHOTO SPOT:</strong> 공항 서쪽 해안이라 점심 식당과 공항까지 되돌아가는 길 없이 이어집니다. 체력이 되시면 바로 옆 도두봉에 올라 바다와 공항 전경을 내려다보세요.</div>
             <div class="spot-links" data-q="도두동 무지개해안도로"></div>
           </div>
         </article>
         <article class="spot-card">
           <div class="spot-image-box">
             <img class="spot-image" src="https://images.unsplash.com/photo-1569718212165-3a8278d5f624?auto=format&fit=crop&w=600&q=80" alt="고기국수">
-            <span class="badge-float food">점심 식사 (11:30)</span>
+            <span class="badge-float food">점심 식사 (11:10)</span>
           </div>
           <div class="spot-body">
-            <div class="spot-time">11:30 ~ 12:35 | 도두항 본점</div>
+            <div class="spot-time">11:10 ~ 12:20 | 제주시 이호동</div>
             <h3 class="spot-name">자매국수 (고기국수 & 돔베고기)</h3>
-            <p class="spot-desc">푹 고아낸 담백한 사골 육수의 고기국수와 쫄깃한 돔베고기. 식사 후 렌트카 반납(12:45) 후 14:00 비행기에 탑승합니다.</p>
-            <div class="spot-curation"><strong>SMART TIP:</strong> 이동 중 '캐치테이블' 원격 줄서기를 이용하면 대기 없이 바로 입장 가능합니다.</div>
-            <div class="spot-links" data-q="자매국수 본점"></div>
+            <p class="spot-desc">푹 고아낸 진한 육수의 고기국수와 쫄깃한 돔베고기. 식사 후 가까운 공항에서 렌트카를 반납(12:30)하고 14:00 비행기에 탑승합니다.</p>
+            <div class="spot-curation"><strong>SMART TIP:</strong> 대기가 긴 편이니 원격 줄서기 지원 여부를 미리 확인해 두면 편합니다.</div>
+            <div class="spot-links" data-q="자매국수 이호"></div>
           </div>
         </article>
       </section>
@@ -779,16 +796,18 @@
         </div>
         <div class="check-card">
           <div class="check-title">📋 사전 예약 & 준비 리스트</div>
-          <div class="check-row"><input type="checkbox" id="ck1"><label for="ck1">1일차 저녁: 색달식당(통갈치구이) 단체석 예약</label></div>
-          <div class="check-row"><input type="checkbox" id="ck2"><label for="ck2">2일차 저녁: 신라스테이 인근 흑돼지 식당 테이블 확보</label></div>
-          <div class="check-row"><input type="checkbox" id="ck3"><label for="ck3">칠순 기념 레터링 케이크 사전 주문 (연동 픽업)</label></div>
-          <div class="check-row"><input type="checkbox" id="ck4"><label for="ck4">가족 전원 신분증 및 모바일 항공권 확인</label></div>
+          <div class="check-row"><input type="checkbox" id="ck1"><label for="ck1">1일차 저녁: 서귀포괸당네 통갈치 단체 예약</label></div>
+          <div class="check-row"><input type="checkbox" id="ck2"><label for="ck2">2일차 점심: 오조해녀의집 영업 여부 전화 확인</label></div>
+          <div class="check-row"><input type="checkbox" id="ck3"><label for="ck3">2일차 저녁: 늘봄흑돼지 단체룸 예약 (한글날 공휴일)</label></div>
+          <div class="check-row"><input type="checkbox" id="ck4"><label for="ck4">칠순 기념 레터링 케이크 사전 주문 (연동 픽업)</label></div>
+          <div class="check-row"><input type="checkbox" id="ck5"><label for="ck5">가족 전원 신분증 및 모바일 항공권 확인</label></div>
         </div>
         <div class="check-card">
           <div class="check-title">📸 매거진 베스트 컷 요약</div>
           <p style="font-size: 12px; line-height: 1.6; color: #4b5563;">
+            • <strong>1일차 협재해변:</strong> 비양도를 배경으로 한 첫 가족 컷<br>
             • <strong>1일차 오설록:</strong> 초록빛 차밭 앞 온 가족 단체 컷<br>
-            • <strong>1일차 카멜리아:</strong> 억새와 핑크뮬리 속 예비부부 스냅<br>
+            • <strong>1일차 카멜리아:</strong> 가을 정원 속 예비부부 스냅<br>
             • <strong>2일차 섭지코지:</strong> 성산일출봉 바다를 등진 대가족 기념사진<br>
             • <strong>2일차 만찬장:</strong> 칠순 케이크 촛불식 & 축하 건배 컷<br>
             • <strong>3일차 무지개도로:</strong> 방호벽 위 나란히 앉은 엔딩 컷
@@ -837,20 +856,22 @@
   // 전체 일정표: 장소명 → 지도 검색어
   const OVERVIEW_PLACES = {
     '제주공항': '제주국제공항',
-    '가람돌솥밥': '가람돌솥밥',
+    '한림칼국수': '한림칼국수 제주본점',
+    '협재해변': '협재해수욕장',
     '오설록 티뮤지엄': '오설록 티뮤지엄',
     '카멜리아 힐': '카멜리아힐',
     '골든데이지': '호텔 골든데이지 서귀포오션',
-    '색달식당': '색달식당 서귀포',
+    '서귀포괸당네': '서귀포괸당네',
     '올레시장': '서귀포매일올레시장',
     '섭지코지': '섭지코지',
-    '바다의 집': '바다의집 성산 오조리',
+    '오조해녀의집': '오조해녀의집',
     '비자림': '비자림',
     '함덕 & 델문도': '카페 델문도 함덕',
+    '용두암': '용두암',
     '신라스테이': '신라스테이 제주',
-    '돌담흑돼지': '돌담흑돼지 연동',
+    '늘봄흑돼지': '늘봄흑돼지',
     '무지개도로': '도두동 무지개해안도로',
-    '자매국수 본점': '자매국수 본점'
+    '자매국수': '자매국수 이호'
   };
   document.querySelectorAll('.td-spot').forEach(td => {
     const name = td.textContent.trim();
